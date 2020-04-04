@@ -2,6 +2,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @author Luiz Antunes
+ *
+ */
 public class Conexao {
 	private String dbName = "jdbc:mysql://localhost/bd_pessoal";
 	private String dbUser = "root";

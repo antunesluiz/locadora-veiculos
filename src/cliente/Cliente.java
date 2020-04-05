@@ -1,3 +1,4 @@
+package cliente;
 
 public class Cliente {
 	private int id;
@@ -190,7 +191,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", statusClientId=" + statusClientId + ", nome=" + nome + ", cpf=" + cpf + ", rg="
+		return "Cliente [id=" + id + ", status=" + statusClientId.getNome() + ", nome=" + nome + ", cpf=" + cpf + ", rg="
 				+ rg + ", sexo=" + sexo + ", telefone=" + telefone + ", logradouro=" + logradouro + ", cep=" + cep
 				+ ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais="
 				+ pais + ", cnh=" + cnh + ", email=" + email + ", senha=" + senha + ", isAdmin=" + isAdmin + "]";

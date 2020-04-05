@@ -1,8 +1,12 @@
+package cliente;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+
+import conexao.Conexao;
 
 /**
  * @author Luiz Antunes
@@ -42,7 +46,7 @@ public class ClienteDaoImpl implements iClienteDao {
 						resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"), 
 						resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"), 
 						resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"), 
-						resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("id_admin"));
+						resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("is_admin"));
 				
 				clientes.add(cliente);
 			}

@@ -1,3 +1,5 @@
+package conexao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,7 +9,7 @@ import java.sql.SQLException;
  *
  */
 public class Conexao {
-	private String dbName = "jdbc:mysql://localhost/bd_pessoal";
+	private String dbName = "jdbc:mysql://localhost/locadora?useTimezone=true&serverTimezone=UTC";
 	private String dbUser = "root";
 	private String dbPassword = "";
 	
@@ -19,7 +21,7 @@ public class Conexao {
 	
 	public boolean abreConexao() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(dbName, dbUser, dbPassword);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

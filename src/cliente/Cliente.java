@@ -17,12 +17,12 @@ public class Cliente {
 	private String pais;
 	private String cnh;
 	private String email;
-	private String senha;
+	private int senha;
 	private int isAdmin;
 
 	public Cliente(int id, StatusCliente statusClientId, String nome, String cpf, String rg, String sexo,
 			String telefone, String logradouro, String cep, int numero, String bairro, String cidade, String estado,
-			String pais, String cnh, String email, String senha, int isAdmin) {
+			String pais, String cnh, String email, int senha, int isAdmin) {
 		super();
 
 		this.id = id;
@@ -173,11 +173,11 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getSenha() {
+	public int getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(int senha) {
 		this.senha = senha;
 	}
 

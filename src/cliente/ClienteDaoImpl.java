@@ -46,7 +46,7 @@ public class ClienteDaoImpl implements iClienteDao {
 						resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"), 
 						resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"), 
 						resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"), 
-						resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("is_admin"));
+						resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getInt("senha"), resultSet.getInt("is_admin"));
 				
 				clientes.add(cliente);
 			}
@@ -61,7 +61,7 @@ public class ClienteDaoImpl implements iClienteDao {
 
 	@Override
 	public void addCliente(Cliente cliente) {
-		String sql = "INSERT INTO cliente (id, status_client_id, nome, cpf, rg, sexo, telefone, logradouro, cep, numero, bairro, cidade, estado, pais, cnh, email, senha, is_admin)"
+		String sql = "INSERT INTO cliente (id, status_cliente_id, nome, cpf, rg, sexo, telefone, logradouro, cep, numero, bairro, cidade, estado, pais, cnh, email, senha, is_admin)"
 				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
@@ -83,7 +83,7 @@ public class ClienteDaoImpl implements iClienteDao {
 			preparedStatement.setString(14, cliente.getPais());
 			preparedStatement.setString(15, cliente.getCnh());
 			preparedStatement.setString(16, cliente.getEmail());
-			preparedStatement.setString(17, cliente.getSenha());
+			preparedStatement.setInt(17, cliente.getSenha());
 			preparedStatement.setInt(18, cliente.getIsAdmin());
 			
 			preparedStatement.execute();
@@ -96,5 +96,39 @@ public class ClienteDaoImpl implements iClienteDao {
 	
 	public void close() {
 		conexao.fechaConexao();
+	}
+
+	@Override
+	public void deletarCliente(int id) {
+		String sql = "DELETE FROM cliente WHERE id = ?";
+		
+		try {
+			preparedStatement = conexao.getConnection().prepareStatement(sql);
+			
+			preparedStatement.setInt(1, id);
+			
+			preparedStatement.execute();
+			
+			preparedStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void atualizarCliente(Cliente cliente) {
+		String sql = "UPDATE cliente SET id = ? WHERE id = ?";
+		
+		try {
+			preparedStatement = conexao.getConnection().prepareStatement(sql);
+			
+			preparedStatement.setInt(1, cliente.getId());
+			preparedStatement.setInt(2, cliente.getId());
+			
+			preparedStatement.execute();
+			preparedStatement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,199 +1,200 @@
 package cliente;
 
 public class Cliente {
-	private int id;
-	private StatusCliente statusClientId;
-	private String nome;
-	private String cpf;
-	private String rg;
-	private String sexo;
-	private String telefone;
-	private String logradouro;
-	private String cep;
-	private int numero;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private String pais;
-	private String cnh;
-	private String email;
-	private int senha;
-	private int isAdmin;
 
-	public Cliente(int id, StatusCliente statusClientId, String nome, String cpf, String rg, String sexo,
-			String telefone, String logradouro, String cep, int numero, String bairro, String cidade, String estado,
-			String pais, String cnh, String email, int senha, int isAdmin) {
-		super();
+    private int id;
+    private StatusCliente statusClientId;
+    private String nome;
+    private String cpf;
+    private String rg;
+    private String sexo;
+    private String telefone;
+    private String logradouro;
+    private String cep;
+    private int numero;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private String pais;
+    private String cnh;
+    private String email;
+    private int senha;
+    private int isAdmin;
 
-		this.id = id;
-		this.statusClientId = statusClientId;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.rg = rg;
-		this.sexo = sexo;
-		this.telefone = telefone;
-		this.logradouro = logradouro;
-		this.cep = cep;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
-		this.cnh = cnh;
-		this.email = email;
-		this.senha = senha;
-		this.isAdmin = isAdmin;
-	}
+    public Cliente(int id, StatusCliente statusClientId, String nome, String cpf, String rg, String sexo,
+            String telefone, String logradouro, String cep, int numero, String bairro, String cidade, String estado,
+            String pais, String cnh, String email, int senha, int isAdmin) {
+        super();
 
-	public int getId() {
-		return id;
-	}
+        this.id = id;
+        this.statusClientId = statusClientId;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.sexo = sexo;
+        this.telefone = telefone;
+        this.logradouro = logradouro;
+        this.cep = cep;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.cnh = cnh;
+        this.email = email;
+        this.senha = senha;
+        this.isAdmin = isAdmin;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public StatusCliente getStatusClientId() {
-		return statusClientId;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setStatusClientId(StatusCliente statusClientId) {
-		this.statusClientId = statusClientId;
-	}
+    public StatusCliente getStatusClientId() {
+        return statusClientId;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public void setStatusClientId(StatusCliente statusClientId) {
+        this.statusClientId = statusClientId;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public String getRg() {
-		return rg;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
+    public String getRg() {
+        return rg;
+    }
 
-	public String getSexo() {
-		return sexo;
-	}
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
+    public String getSexo() {
+        return sexo;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-	public String getCep() {
-		return cep;
-	}
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
 
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+    public String getCep() {
+        return cep;
+    }
 
-	public int getNumero() {
-		return numero;
-	}
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
 
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
+    public int getNumero() {
+        return numero;
+    }
 
-	public String getBairro() {
-		return bairro;
-	}
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
+    public String getBairro() {
+        return bairro;
+    }
 
-	public String getCidade() {
-		return cidade;
-	}
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
+    public String getCidade() {
+        return cidade;
+    }
 
-	public String getEstado() {
-		return estado;
-	}
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+    public String getEstado() {
+        return estado;
+    }
 
-	public String getPais() {
-		return pais;
-	}
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
+    public String getPais() {
+        return pais;
+    }
 
-	public String getCnh() {
-		return cnh;
-	}
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
 
-	public void setCnh(String cnh) {
-		this.cnh = cnh;
-	}
+    public String getCnh() {
+        return cnh;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public int getSenha() {
-		return senha;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setSenha(int senha) {
-		this.senha = senha;
-	}
+    public int getSenha() {
+        return senha;
+    }
 
-	public int getIsAdmin() {
-		return isAdmin;
-	}
+    public void setSenha(int senha) {
+        this.senha = senha;
+    }
 
-	public void setIsAdmin(int isAdmin) {
-		this.isAdmin = isAdmin;
-	}
+    public int getIsAdmin() {
+        return isAdmin;
+    }
 
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", status=" + statusClientId.getNome() + ", nome=" + nome + ", cpf=" + cpf + ", rg="
-				+ rg + ", sexo=" + sexo + ", telefone=" + telefone + ", logradouro=" + logradouro + ", cep=" + cep
-				+ ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais="
-				+ pais + ", cnh=" + cnh + ", email=" + email + ", senha=" + senha + ", isAdmin=" + isAdmin + "]";
-	}
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", status=" + statusClientId.getNome() + ", nome=" + nome + ", cpf=" + cpf + ", rg="
+                + rg + ", sexo=" + sexo + ", telefone=" + telefone + ", logradouro=" + logradouro + ", cep=" + cep
+                + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais="
+                + pais + ", cnh=" + cnh + ", email=" + email + ", senha=" + senha + ", isAdmin=" + isAdmin + "]";
+    }
 }

@@ -9,42 +9,43 @@ import java.sql.SQLException;
  *
  */
 public class Conexao {
-	private String dbName = "jdbc:mysql://localhost/locadora?useTimezone=true&serverTimezone=UTC";
-	private String dbUser = "root";
-	private String dbPassword = "";
-	
-	private Connection connection;
-	
-	public Conexao() {
+    private final String dbName = "jdbc:mysql://localhost/locadora?useTimezone=true&serverTimezone=UTC";
+    private final String dbUser = "root";
+    private final String dbPassword = "";
 
-	}
-	
-	public boolean abreConexao() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection(dbName, dbUser, dbPassword);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public void fechaConexao() {
-		try {
-			connection.close();
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+    private Connection connection;
 
-	public Connection getConnection() {
-		return connection;
-	}
+    public Conexao() {
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
+    }
+
+    @SuppressWarnings("CallToPrintStackTrace")
+    public boolean abreConexao() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(dbName, dbUser, dbPassword);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public void fechaConexao() {
+        try {
+            connection.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

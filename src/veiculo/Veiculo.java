@@ -3,139 +3,140 @@ package veiculo;
 import java.sql.Date;
 
 public class Veiculo {
-	private int id;
-	private StatusVeiculo statusVeiculo;
-	private CarroceriaVeiculo carroceriaVeiculo;
-	private CategoriaVeiculo categoriaVeiculo;
-	private CombustivelVeiculo combustivelVeiculo;
-	private String renavam;
-	private String chassi;
-	private String marca;
-	private String placa;
-	private Date ano;
-	private String cor;
-	private String modelo;
-	
-	public Veiculo(int id, StatusVeiculo statusVeiculo, CarroceriaVeiculo carroceriaVeiculo,
-			CategoriaVeiculo categoriaVeiculo, CombustivelVeiculo combustivelVeiculo, String renavam, String chassi,
-			String marca, String placa, Date ano, String cor, String modelo) {
-		super();
-		
-		this.id = id;
-		this.statusVeiculo = statusVeiculo;
-		this.carroceriaVeiculo = carroceriaVeiculo;
-		this.categoriaVeiculo = categoriaVeiculo;
-		this.combustivelVeiculo = combustivelVeiculo;
-		this.renavam = renavam;
-		this.chassi = chassi;
-		this.marca = marca;
-		this.placa = placa;
-		this.ano = ano;
-		this.cor = cor;
-		this.modelo = modelo;
-	}
 
-	public int getId() {
-		return id;
-	}
+    private int id;
+    private int statusVeiculo;
+    private int carroceriaVeiculo;
+    private int categoriaVeiculo;
+    private int combustivelVeiculo;
+    private String renavam;
+    private String chassi;
+    private String marca;
+    private String placa;
+    private Date ano;
+    private String cor;
+    private String modelo;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Veiculo(int id, int statusVeiculo, int carroceriaVeiculo,
+            int categoriaVeiculo, int combustivelVeiculo, String renavam, String chassi,
+            String marca, String placa, Date ano, String cor, String modelo) {
+        super();
 
-	public StatusVeiculo getStatusVeiculo() {
-		return statusVeiculo;
-	}
+        this.id = id;
+        this.statusVeiculo = statusVeiculo;
+        this.carroceriaVeiculo = carroceriaVeiculo;
+        this.categoriaVeiculo = categoriaVeiculo;
+        this.combustivelVeiculo = combustivelVeiculo;
+        this.renavam = renavam;
+        this.chassi = chassi;
+        this.marca = marca;
+        this.placa = placa;
+        this.ano = ano;
+        this.cor = cor;
+        this.modelo = modelo;
+    }
 
-	public void setStatusVeiculo(StatusVeiculo statusVeiculo) {
-		this.statusVeiculo = statusVeiculo;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public CarroceriaVeiculo getCarroceriaVeiculo() {
-		return carroceriaVeiculo;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setCarroceriaVeiculo(CarroceriaVeiculo carroceriaVeiculo) {
-		this.carroceriaVeiculo = carroceriaVeiculo;
-	}
+    public int getStatusVeiculo() {
+        return statusVeiculo;
+    }
 
-	public CategoriaVeiculo getCategoriaVeiculo() {
-		return categoriaVeiculo;
-	}
+    public void setStatusVeiculo(int statusVeiculo) {
+        this.statusVeiculo = statusVeiculo;
+    }
 
-	public void setCategoriaVeiculo(CategoriaVeiculo categoriaVeiculo) {
-		this.categoriaVeiculo = categoriaVeiculo;
-	}
+    public int getCarroceriaVeiculo() {
+        return carroceriaVeiculo;
+    }
 
-	public CombustivelVeiculo getCombustivelVeiculo() {
-		return combustivelVeiculo;
-	}
+    public void setCarroceriaVeiculo(int carroceriaVeiculo) {
+        this.carroceriaVeiculo = carroceriaVeiculo;
+    }
 
-	public void setCombustivelVeiculo(CombustivelVeiculo combustivelVeiculo) {
-		this.combustivelVeiculo = combustivelVeiculo;
-	}
+    public int getCategoriaVeiculo() {
+        return categoriaVeiculo;
+    }
 
-	public String getRenavam() {
-		return renavam;
-	}
+    public void setCategoriaVeiculo(int categoriaVeiculo) {
+        this.categoriaVeiculo = categoriaVeiculo;
+    }
 
-	public void setRenavam(String renavam) {
-		this.renavam = renavam;
-	}
+    public int getCombustivelVeiculo() {
+        return combustivelVeiculo;
+    }
 
-	public String getChassi() {
-		return chassi;
-	}
+    public void setCombustivelVeiculo(int combustivelVeiculo) {
+        this.combustivelVeiculo = combustivelVeiculo;
+    }
 
-	public void setChassi(String chassi) {
-		this.chassi = chassi;
-	}
+    public String getRenavam() {
+        return renavam;
+    }
 
-	public String getMarca() {
-		return marca;
-	}
+    public void setRenavam(String renavam) {
+        this.renavam = renavam;
+    }
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
+    public String getChassi() {
+        return chassi;
+    }
 
-	public String getPlaca() {
-		return placa;
-	}
+    public void setChassi(String chassi) {
+        this.chassi = chassi;
+    }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+    public String getMarca() {
+        return marca;
+    }
 
-	public Date getAno() {
-		return ano;
-	}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-	public void setAno(Date ano) {
-		this.ano = ano;
-	}
+    public String getPlaca() {
+        return placa;
+    }
 
-	public String getCor() {
-		return cor;
-	}
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
+    public Date getAno() {
+        return ano;
+    }
 
-	public String getModelo() {
-		return modelo;
-	}
+    public void setAno(Date ano) {
+        this.ano = ano;
+    }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public String getCor() {
+        return cor;
+    }
 
-	@Override
-	public String toString() {
-		return "Veiculo [id=" + id + ", statusVeiculo=" + statusVeiculo + ", carroceriaVeiculo=" + carroceriaVeiculo
-				+ ", categoriaVeiculo=" + categoriaVeiculo + ", combustivelVeiculo=" + combustivelVeiculo + ", renavam="
-				+ renavam + ", chassi=" + chassi + ", marca=" + marca + ", placa=" + placa + ", ano=" + ano + ", cor="
-				+ cor + ", modelo=" + modelo + "]";
-	}
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    @Override
+    public String toString() {
+        return "Veiculo [id=" + id + ", statusVeiculo=" + statusVeiculo + ", carroceriaVeiculo=" + carroceriaVeiculo
+                + ", categoriaVeiculo=" + categoriaVeiculo + ", combustivelVeiculo=" + combustivelVeiculo + ", renavam="
+                + renavam + ", chassi=" + chassi + ", marca=" + marca + ", placa=" + placa + ", ano=" + ano + ", cor="
+                + cor + ", modelo=" + modelo + "]";
+    }
 }

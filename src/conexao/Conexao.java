@@ -9,6 +9,7 @@ import java.sql.SQLException;
  *
  */
 public class Conexao {
+
     private final String dbName = "jdbc:mysql://localhost/locadora?useTimezone=true&serverTimezone=UTC";
     private final String dbUser = "root";
     private final String dbPassword = "";
@@ -36,7 +37,7 @@ public class Conexao {
     public void fechaConexao() {
         try {
             connection.close();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

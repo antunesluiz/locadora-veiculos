@@ -1,38 +1,39 @@
 package veiculo;
 
 public class CategoriaVeiculo {
-	private int id;
-	private String nome;
-	private double preco;
-	
-	public CategoriaVeiculo(int id, String nome, double preco) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.preco = preco;
-	}
 
-	public int getId() {
-		return id;
-	}
+    private int id;
+    private String nome;
+    private double preco;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public CategoriaVeiculo(int id, String nome, double preco) {
+        super();
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public double getPreco() {
-		return preco;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
 }

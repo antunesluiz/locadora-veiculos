@@ -1,11 +1,13 @@
+package Main;
 
-import cliente.ClienteMain;
+
+import cliente.ClienteCadastro;
 
 public class Main {
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            new ClienteMain().setVisible(true);
+            new ClienteCadastro().setVisible(true);
         });
     }
 }

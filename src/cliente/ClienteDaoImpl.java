@@ -42,11 +42,11 @@ public class ClienteDaoImpl implements iClienteDao {
             ResultSet resultSet = preparedStatement.getResultSet();
 
             while (resultSet.next()) {
-                cliente = new Cliente(resultSet.getInt("id"), new StatusCliente(resultSet.getInt("status_id"), resultSet.getString("status_nome")),
+                cliente = new Cliente(resultSet.getInt("id"), resultSet.getInt("status_id"),
                         resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"),
                         resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"),
                         resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"),
-                        resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getInt("senha"), resultSet.getInt("is_admin"));
+                        resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("is_admin"));
 
                 clientes.add(cliente);
             }
@@ -68,7 +68,7 @@ public class ClienteDaoImpl implements iClienteDao {
             preparedStatement = conexao.getConnection().prepareStatement(sql);
 
             preparedStatement.setNull(1, Types.INTEGER);
-            preparedStatement.setInt(2, cliente.getStatusClientId().getId());
+            preparedStatement.setInt(2, cliente.getStatusClientId());
             preparedStatement.setString(3, cliente.getNome());
             preparedStatement.setString(4, cliente.getCpf());
             preparedStatement.setString(5, cliente.getRg());
@@ -83,7 +83,7 @@ public class ClienteDaoImpl implements iClienteDao {
             preparedStatement.setString(14, cliente.getPais());
             preparedStatement.setString(15, cliente.getCnh());
             preparedStatement.setString(16, cliente.getEmail());
-            preparedStatement.setInt(17, cliente.getSenha());
+            preparedStatement.setString(17, cliente.getSenha());
             preparedStatement.setInt(18, cliente.getIsAdmin());
 
             preparedStatement.execute();
@@ -117,12 +117,12 @@ public class ClienteDaoImpl implements iClienteDao {
 
     @Override
     public void atualizarCliente(Cliente cliente) {
-        String sql = "UPDATE cliente SET id = ? WHERE id = ?";
+        String sql = "UPDATE cliente SET status_cliente_id = ? WHERE id = ?";
 
         try {
             preparedStatement = conexao.getConnection().prepareStatement(sql);
 
-            preparedStatement.setInt(1, cliente.getId());
+            preparedStatement.setInt(1, cliente.getStatusClientId());
             preparedStatement.setInt(2, cliente.getId());
 
             preparedStatement.execute();
@@ -130,5 +130,65 @@ public class ClienteDaoImpl implements iClienteDao {
         } catch (SQLException e) {
             System.err.println("Erro ao atualizar clientes. " + e.getCause());
         }
+    }
+
+    @Override
+    public Cliente getClientById(int id) {
+        String sql = "SELECT cliente.*, status_cliente.id as status_id, status_cliente.nome as status_nome "
+                + "FROM cliente AS cliente JOIN status_cliente AS status_cliente "
+                + "ON cliente.status_cliente_id = status_cliente.id WHERE id = ?";
+
+        Cliente cliente = null;
+        try {
+            preparedStatement = conexao.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            if (resultSet != null) {
+                preparedStatement.close();
+                
+                return  cliente = new Cliente(resultSet.getInt("id"), resultSet.getInt("status_id"),
+                        resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"),
+                        resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"),
+                        resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"),
+                        resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("is_admin"));
+            }
+
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.err.println("Erro ao capturar clientes");
+        }
+
+        return null;
+    }
+
+    @Override
+    public Cliente checkLogin(String email, String senha) {
+        String sql = "SELECT * FROM cliente WHERE email = ? AND senha = ?";
+
+        try {
+            preparedStatement = conexao.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, senha);
+
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            if (resultSet.next()) {
+                return new Cliente(resultSet.getInt("id"), resultSet.getInt("status_cliente_id"),
+                        resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"),
+                        resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"),
+                        resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"),
+                        resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("is_admin"));
+            }
+
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
     }
 }

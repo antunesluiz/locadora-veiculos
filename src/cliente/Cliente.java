@@ -3,7 +3,7 @@ package cliente;
 public class Cliente {
 
     private int id;
-    private StatusCliente statusClientId;
+    private int statusClientId;
     private String nome;
     private String cpf;
     private String rg;
@@ -18,12 +18,12 @@ public class Cliente {
     private String pais;
     private String cnh;
     private String email;
-    private int senha;
+    private String senha;
     private int isAdmin;
 
-    public Cliente(int id, StatusCliente statusClientId, String nome, String cpf, String rg, String sexo,
+    public Cliente(int id, int statusClientId, String nome, String cpf, String rg, String sexo,
             String telefone, String logradouro, String cep, int numero, String bairro, String cidade, String estado,
-            String pais, String cnh, String email, int senha, int isAdmin) {
+            String pais, String cnh, String email, String senha, int isAdmin) {
         super();
 
         this.id = id;
@@ -46,6 +46,9 @@ public class Cliente {
         this.isAdmin = isAdmin;
     }
 
+    public Cliente() {
+    }
+
     public int getId() {
         return id;
     }
@@ -54,11 +57,11 @@ public class Cliente {
         this.id = id;
     }
 
-    public StatusCliente getStatusClientId() {
+    public int getStatusClientId() {
         return statusClientId;
     }
 
-    public void setStatusClientId(StatusCliente statusClientId) {
+    public void setStatusClientId(int statusClientId) {
         this.statusClientId = statusClientId;
     }
 
@@ -67,7 +70,9 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome != null) {
+            this.nome = nome;
+        }
     }
 
     public String getCpf() {
@@ -174,11 +179,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
@@ -192,7 +197,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente [id=" + id + ", status=" + statusClientId.getNome() + ", nome=" + nome + ", cpf=" + cpf + ", rg="
+        return "Cliente [id=" + id + ", status=" + ", nome=" + nome + ", cpf=" + cpf + ", rg="
                 + rg + ", sexo=" + sexo + ", telefone=" + telefone + ", logradouro=" + logradouro + ", cep=" + cep
                 + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais="
                 + pais + ", cnh=" + cnh + ", email=" + email + ", senha=" + senha + ", isAdmin=" + isAdmin + "]";

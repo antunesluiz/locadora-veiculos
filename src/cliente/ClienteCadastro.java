@@ -62,7 +62,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txtConfirmaSenha = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
@@ -246,7 +246,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
                                                 .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel22)
-                                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGap(32, 32, 32)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel18)
@@ -338,7 +338,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel22)
                         .addGap(8, 8, 8)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -498,31 +498,84 @@ public class ClienteCadastro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Cliente cliente = new Cliente(1, 1, "Jose", "12345678910", "12345", "M", "31940028922", "Rua seila", "000000", 30, "teste", "teste", "teste", "teste", "teste", "teste", "123456", 1);
-
+        String ConfirmaSenha;
         cliente.setNome(txtNome.getText());
         cliente.setCpf(txtCPF.getText());
         cliente.setRg(txtRG.getText());
         cliente.setCnh(txtCNH.getText());
         cliente.setEstado(txtEstado.getText());
+        cliente.setBairro(txtBairro.getText());
+        // cliente.setNumero(txtNumero.getText(0, 100)); conversão de string para int necessário
         cliente.setPais(txtPais.getText());
         cliente.setCidade(txtCidade.getText());
         cliente.setLogradouro(txtLogradouro.getText());
         //cliente.setCelular(txtCelular.getText());       nao tem na lista de atributos
-        cliente.setEmail(jEmail.getText());
+        cliente.setEmail(jEmail.getText()); // Código é necessário?
+        cliente.setEmail(txtEmail.getText());
         cliente.setSenha(txtSenha.getText());        //string para inteiro
+        ConfirmaSenha = txtConfirmaSenha.getText();
         //falta cep 
 
         ClienteDaoImpl dao = new ClienteDaoImpl();
-        if (cliente.getNome() != null && !cliente.getNome().equals("")) {
-            if (!cliente.getCpf().equals("") && isCPF(cliente.getCpf())) {
-                dao.addCliente(cliente);
-                            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-
-            } else {
-                JOptionPane.showMessageDialog(null, "cpf inválido");
-            }
+        if (cliente.getNome() != null && !cliente.getNome().equals("")
+                && !cliente.getCpf().equals("") //&& isCPF(cliente.getCpf()) ADICIONAR COM O VERIFICADOR
+                && cliente.getRg() != null && !cliente.getRg().equals("")
+                && cliente.getCnh() != null && !cliente.getCnh().equals("")
+                && cliente.getEstado() != null && !cliente.getEstado().equals("")
+                && cliente.getPais() != null && !cliente.getPais().equals("")
+                && cliente.getCidade() != null && !cliente.getCidade().equals("")
+                && cliente.getLogradouro() != null && !cliente.getLogradouro().equals("")
+                && cliente.getEmail() != null && !cliente.getEmail().equals("")
+                && cliente.getSenha() != null && !cliente.getSenha().equals("")
+                && cliente.getSenha().equals(ConfirmaSenha)
+                && cliente.getBairro() != null && !cliente.getBairro().equals("")) {
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            dao.addCliente(cliente);
         } else {
-            JOptionPane.showMessageDialog(null, "Preencha o campo nome");
+            if (cliente.getNome().equals("")) {
+                JOptionPane.showMessageDialog(null, "Preencha o Campo Nome!");
+            } else {
+                if (cliente.getNome().equals("")) //|| !isCPF(cliente.getCpf())) ] ADICIONAR COM O VERIFICADOR
+                {
+                    JOptionPane.showMessageDialog(null, "Cpf inválido");
+                } else {
+                    if (cliente.getRg().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Preencha o Campo RG!");
+                    } else {
+                        if (cliente.getEstado().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Preencha o Campo Estado!!");
+                        } else {
+                            if (cliente.getPais().equals("")) {
+                                JOptionPane.showMessageDialog(null, "Preencha o Campo País!!");
+                            } else {
+                                if (cliente.getCidade().equals("")) {
+                                    JOptionPane.showMessageDialog(null, "Preencha o Campo Cidade!!");
+                                } else {
+                                    if (cliente.getLogradouro().equals("")) {
+                                        JOptionPane.showMessageDialog(null, "Preencha o Campo Logradouro!");
+                                    } else {
+                                        if (cliente.getCnh().equals("")) {
+                                            JOptionPane.showMessageDialog(null, "Preencha o Campo Cnh!");
+                                        } else {
+                                            if (!cliente.getSenha().equals(ConfirmaSenha)) {
+                                                JOptionPane.showMessageDialog(null, "Preencha corretamente os campos de senha!");
+                                            } else {
+                                                if (cliente.getBairro().equals("")) {
+                                                    JOptionPane.showMessageDialog(null, "Preencha o Campo Bairro!");
+                                                } else {
+                                                    if (cliente.getEmail().equals("")) {
+                                                        JOptionPane.showMessageDialog(null, "Preencha o Campo E-mail!");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -667,11 +720,11 @@ public class ClienteCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField jSenha;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCNH;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtConfirmaSenha;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtLogradouro;

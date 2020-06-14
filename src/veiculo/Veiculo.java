@@ -13,13 +13,13 @@ public class Veiculo {
     private String chassi;
     private String marca;
     private String placa;
-    private Date ano;
+    private String ano;
     private String cor;
     private String modelo;
 
     public Veiculo(int id, int statusVeiculo, int carroceriaVeiculo,
             int categoriaVeiculo, int combustivelVeiculo, String renavam, String chassi,
-            String marca, String placa, Date ano, String cor, String modelo) {
+            String marca, String placa, String ano, String cor, String modelo) {
         super();
 
         this.id = id;
@@ -108,11 +108,11 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public Date getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 

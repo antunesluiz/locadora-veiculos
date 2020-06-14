@@ -117,18 +117,34 @@ public class ClienteDaoImpl implements iClienteDao {
 
     @Override
     public void atualizarCliente(Cliente cliente) {
-        String sql = "UPDATE cliente SET status_cliente_id = ? WHERE id = ?";
+        String sql = "UPDATE cliente SET id = ?, status_cliente_id =  ?, nome = ?, cpf = ?, rg = ?, sexo = ?, cnh = ?, "
+                + "estado = ?, cidade = ?, pais = ?, logradouro = ?, numero = ?, bairro = ?, telefone = ?, senha = ? "
+                + "WHERE id = ?";
 
         try {
             preparedStatement = conexao.getConnection().prepareStatement(sql);
 
-            preparedStatement.setInt(1, cliente.getStatusClientId());
-            preparedStatement.setInt(2, cliente.getId());
+            preparedStatement.setInt(1, cliente.getId());
+            preparedStatement.setInt(2, cliente.getStatusClientId());
+            preparedStatement.setString(3, cliente.getNome());
+            preparedStatement.setString(4, cliente.getCpf());
+            preparedStatement.setString(5, cliente.getRg());
+            preparedStatement.setString(6, cliente.getSexo());
+            preparedStatement.setString(7, cliente.getCnh());
+            preparedStatement.setString(8, cliente.getEstado());
+            preparedStatement.setString(9, cliente.getCidade());
+            preparedStatement.setString(10, cliente.getPais());
+            preparedStatement.setString(11, cliente.getLogradouro());
+            preparedStatement.setInt(12, cliente.getNumero());
+            preparedStatement.setString(13, cliente.getBairro());
+            preparedStatement.setString(14, cliente.getTelefone());
+            preparedStatement.setString(15, cliente.getSenha());
+            preparedStatement.setInt(16, cliente.getId());
 
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {
-            System.err.println("Erro ao atualizar clientes. " + e.getCause());
+            e.printStackTrace();
         }
     }
 
@@ -148,8 +164,8 @@ public class ClienteDaoImpl implements iClienteDao {
 
             if (resultSet != null) {
                 preparedStatement.close();
-                
-                return  cliente = new Cliente(resultSet.getInt("id"), resultSet.getInt("status_id"),
+
+                return cliente = new Cliente(resultSet.getInt("id"), resultSet.getInt("status_id"),
                         resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"),
                         resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"),
                         resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"),

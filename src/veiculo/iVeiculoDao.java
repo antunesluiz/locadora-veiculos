@@ -12,6 +12,16 @@ import java.util.ArrayList;
  * @author Luiz Antunes
  */
 public interface iVeiculoDao {
+
     public ArrayList<Veiculo> getVeiculos();
+
     public ArrayList<Veiculo> getVeiculosDisponiveis();
+
+    public ArrayList<Veiculo> getVeiculosPelaCarroceria(String carroceria);
+
+    public CombustivelVeiculo getCombustivelPeloId(int id);
+
+    public CategoriaVeiculo getCategoriaPeloId(int id);
+
+    public CarroceriaVeiculo getCarroceriaById(int id);
 }

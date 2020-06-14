@@ -42,8 +42,6 @@ public class ClienteCadastro extends javax.swing.JFrame {
         txtCPF = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         txtRG = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtCNH = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -63,7 +61,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        txtConfirmaSenha = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
@@ -78,17 +76,20 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel5.setBackground(new java.awt.Color(132, 204, 204));
+        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Cadastro");
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(23, 153, 157));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        txtNome.setBackground(new java.awt.Color(166, 221, 221));
+        txtNome.setCaretColor(new java.awt.Color(102, 255, 102));
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -101,6 +102,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel6.setText("CPF");
 
+        txtCPF.setBackground(new java.awt.Color(166, 221, 221));
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -110,19 +112,12 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel8.setText("RG");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel9.setText("Sexo");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino", "Outro" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        txtRG.setBackground(new java.awt.Color(166, 221, 221));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel10.setText("CNH");
 
+        txtCNH.setBackground(new java.awt.Color(166, 221, 221));
         txtCNH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCNHActionPerformed(evt);
@@ -132,6 +127,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("SansSerif", 1, 11)); // NOI18N
         jLabel13.setText("Telefone");
 
+        txtTelefone.setBackground(new java.awt.Color(166, 221, 221));
         try {
             txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
@@ -141,11 +137,14 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel14.setText("Email");
 
+        txtEmail.setBackground(new java.awt.Color(166, 221, 221));
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
+
+        txtLogradouro.setBackground(new java.awt.Color(166, 221, 221));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel15.setText("Logradouro");
@@ -154,15 +153,22 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel16.setText("Número");
         jLabel16.setFocusTraversalPolicyProvider(true);
 
+        txtNumero.setBackground(new java.awt.Color(166, 221, 221));
+
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel17.setText("Bairro");
+
+        txtBairro.setBackground(new java.awt.Color(166, 221, 221));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel18.setText("Cidade");
 
+        txtCidade.setBackground(new java.awt.Color(166, 221, 221));
+
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel19.setText("Estado");
 
+        txtPais.setBackground(new java.awt.Color(166, 221, 221));
         txtPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPaisActionPerformed(evt);
@@ -184,8 +190,14 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel21.setText("Senha");
 
+        txtConfirmaSenha.setBackground(new java.awt.Color(166, 221, 221));
+
+        txtSenha.setBackground(new java.awt.Color(166, 221, 221));
+
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
         jLabel22.setText("Repita senha");
+
+        txtEstado.setBackground(new java.awt.Color(166, 221, 221));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -213,14 +225,8 @@ public class ClienteCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel18)
                                     .addComponent(jLabel10)))
                             .addComponent(jLabel19)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
                             .addComponent(jLabel15)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))
@@ -235,7 +241,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel21))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,23 +264,14 @@ public class ClienteCadastro extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel5)
+                .addGap(12, 12, 12)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel9)
-                        .addGap(26, 26, 26)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,7 +309,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -476,31 +473,88 @@ public class ClienteCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPaisActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cliente cliente = new Cliente(1, 1, "Jose", "12345678910", "12345", "M", "31940028922", "Rua seila", "000000", 30, "teste", "teste", "teste", "teste", "teste", "teste", "123456", 1);
-
+        Cliente cliente = new Cliente(1, 1, "Jose", "12345678910", "12345", "N/A", "31940028922", "Rua seila", "000000", 30, "teste", "teste", "teste", "teste", "teste", "teste", "123456", 1);
+        String ConfirmaSenha;
         cliente.setNome(txtNome.getText());
         cliente.setCpf(txtCPF.getText());
         cliente.setRg(txtRG.getText());
         cliente.setCnh(txtCNH.getText());
         cliente.setEstado(txtEstado.getText());
+        cliente.setBairro(txtBairro.getText());
+        // cliente.setNumero(txtNumero.getText(0, 100)); conversão de string para int necessário
         cliente.setPais(txtPais.getText());
         cliente.setCidade(txtCidade.getText());
         cliente.setLogradouro(txtLogradouro.getText());
         //cliente.setCelular(txtCelular.getText());       nao tem na lista de atributos
-        cliente.setEmail(jEmail.getText());
+        cliente.setEmail(jEmail.getText()); // Código é necessário?
+        cliente.setEmail(txtEmail.getText());
         cliente.setSenha(txtSenha.getText());        //string para inteiro
+        ConfirmaSenha = txtConfirmaSenha.getText();
         //falta cep 
 
         ClienteDaoImpl dao = new ClienteDaoImpl();
-        if (cliente.getNome() != null && !cliente.getNome().equals("")) {
-            if (!cliente.getCpf().equals("") && validaCpf(cliente.getCpf())) {
-                dao.addCliente(cliente);
-                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-            } else {
-                JOptionPane.showMessageDialog(null, "cpf inválido");
-            }
+        if (cliente.getNome() != null && !cliente.getNome().equals("")
+                && !cliente.getCpf().equals("") && validaCpf(cliente.getCpf())
+                && cliente.getRg() != null && !cliente.getRg().equals("")
+                && cliente.getCnh() != null && !cliente.getCnh().equals("")
+                && cliente.getEstado() != null && !cliente.getEstado().equals("")
+                && cliente.getPais() != null && !cliente.getPais().equals("")
+                && cliente.getCidade() != null && !cliente.getCidade().equals("")
+                && cliente.getLogradouro() != null && !cliente.getLogradouro().equals("")
+                && cliente.getEmail() != null && !cliente.getEmail().equals("")
+                && cliente.getSenha() != null && !cliente.getSenha().equals("")
+                && cliente.getSenha().equals(ConfirmaSenha)
+                && cliente.getBairro() != null && !cliente.getBairro().equals("")) {
+            
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            dao.addCliente(cliente);
+            
+            new Principal(cliente).setVisible(true);
+            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Preencha o campo nome");
+            if (cliente.getNome().equals("")) {
+                JOptionPane.showMessageDialog(null, "Preencha o Campo Nome!");
+            } else {
+                if (cliente.getCpf().equals("") || !validaCpf(cliente.getCpf())) {
+                    JOptionPane.showMessageDialog(null, "Cpf inválido");
+                } else {
+                    if (cliente.getRg().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Preencha o Campo RG!");
+                    } else {
+                        if (cliente.getEstado().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Preencha o Campo Estado!!");
+                        } else {
+                            if (cliente.getPais().equals("")) {
+                                JOptionPane.showMessageDialog(null, "Preencha o Campo País!!");
+                            } else {
+                                if (cliente.getCidade().equals("")) {
+                                    JOptionPane.showMessageDialog(null, "Preencha o Campo Cidade!!");
+                                } else {
+                                    if (cliente.getLogradouro().equals("")) {
+                                        JOptionPane.showMessageDialog(null, "Preencha o Campo Logradouro!");
+                                    } else {
+                                        if (cliente.getCnh().equals("")) {
+                                            JOptionPane.showMessageDialog(null, "Preencha o Campo Cnh!");
+                                        } else {
+                                            if (!cliente.getSenha().equals(ConfirmaSenha)) {
+                                                JOptionPane.showMessageDialog(null, "Preencha corretamente os campos de senha!");
+                                            } else {
+                                                if (cliente.getBairro().equals("")) {
+                                                    JOptionPane.showMessageDialog(null, "Preencha o Campo Bairro!");
+                                                } else {
+                                                    if (cliente.getEmail().equals("")) {
+                                                        JOptionPane.showMessageDialog(null, "Preencha o Campo E-mail!");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -514,13 +568,12 @@ public class ClienteCadastro extends javax.swing.JFrame {
             return false;
         }
     }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Cliente cliente;
 
         ClienteDaoImpl clienteDaoImpl = new ClienteDaoImpl();
         cliente = clienteDaoImpl.checkLogin(jEmail.getText(), new String(jSenha.getPassword()).trim());
-
-        System.out.println(jEmail.getText() + new String(jSenha.getPassword()).trim());
 
         if (cliente != null) {
             new Principal(cliente).setVisible(true);
@@ -530,14 +583,9 @@ public class ClienteCadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTextField jEmail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -558,17 +606,16 @@ public class ClienteCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPasswordField jSenha;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCNH;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtConfirmaSenha;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtLogradouro;

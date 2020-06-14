@@ -5,9 +5,11 @@ package Main;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import cliente.Cliente;
 import cliente.Perfil;
 import java.awt.Color;
+import veiculo.ListarVeiculos;
+import veiculo.VeiculoReservado;
 
 /**
  *
@@ -18,15 +20,37 @@ public class Principal extends javax.swing.JFrame {
     Color panedefault;
     Color paneClick;
 
-    public Principal() {
+    private final Cliente cliente;
+
+    private final ListarVeiculos listarVeiculos;
+    private final Perfil perfil;
+    private final Home home;
+    private final veiculo.VeiculoReservado veiculoReservado;
+
+    public Principal(Cliente cliente) {
         initComponents();
+
+        this.cliente = cliente;
+
+        perfil = new Perfil(cliente, this);
+        listarVeiculos = new ListarVeiculos(cliente);
+        home = new Home(cliente);
+        veiculoReservado = new VeiculoReservado(cliente);
+
+        painelPrincipal.add(home);
+        painelPrincipal.add(perfil);
+        painelPrincipal.add(listarVeiculos);
+        painelPrincipal.add(veiculoReservado);
+
+        //Define Home com default
+        home.setVisible(true);
 
         panedefault = new Color(0, 51, 51);
         paneClick = new Color(240, 240, 240);
+
         pane2.setBackground(panedefault);
         pane3.setBackground(panedefault);
         pane4.setBackground(panedefault);
-
     }
 
     /**
@@ -59,6 +83,7 @@ public class Principal extends javax.swing.JFrame {
         painelPrincipal = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(0, 45, 36));
 
@@ -279,7 +304,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
                 .addComponent(paneHome, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +312,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(paneLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paneAlugados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
 
         painelPrincipal.setBackground(new java.awt.Color(0, 125, 125));
@@ -303,7 +328,7 @@ public class Principal extends javax.swing.JFrame {
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
+            .addGap(0, 815, Short.MAX_VALUE)
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,8 +341,8 @@ public class Principal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,11 +369,20 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void paneAlugadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneAlugadosMouseClicked
-        // TODO add your handling code here:
+        listarVeiculos.setVisible(false);
+        perfil.setVisible(false);
+        home.setVisible(false);
+        veiculoReservado.popularTabela();
+        veiculoReservado.setVisible(true);
     }//GEN-LAST:event_paneAlugadosMouseClicked
 
+    //Listar Veiculos
     private void paneListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneListaMouseClicked
-        // TODO add your handling code here:
+        listarVeiculos.popularTabela();
+        listarVeiculos.setVisible(true);
+        perfil.setVisible(false);
+        home.setVisible(false);
+        veiculoReservado.setVisible(false);
     }//GEN-LAST:event_paneListaMouseClicked
 
     private void panePerfilMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panePerfilMousePressed
@@ -360,13 +394,12 @@ public class Principal extends javax.swing.JFrame {
         pane4.setBackground(panedefault);
     }//GEN-LAST:event_panePerfilMousePressed
 
+    //Perfil
     private void panePerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panePerfilMouseClicked
-        
-        Perfil tp = new Perfil();
-        painelPrincipal.add(tp).setVisible(true);
-
-        // TODO add your handling code here:
-
+        listarVeiculos.setVisible(false);
+        perfil.setVisible(true);
+        home.setVisible(false);
+        veiculoReservado.setVisible(false);
     }//GEN-LAST:event_panePerfilMouseClicked
 
     private void paneListaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneListaMousePressed
@@ -378,12 +411,11 @@ public class Principal extends javax.swing.JFrame {
         pane4.setBackground(panedefault);
     }//GEN-LAST:event_paneListaMousePressed
 
-    private void painelPrincipalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelPrincipalMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_painelPrincipalMousePressed
-
     private void paneHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneHomeMouseClicked
-        // TODO add your handling code here:
+        listarVeiculos.setVisible(false);
+        perfil.setVisible(false);
+        home.setVisible(true);
+        veiculoReservado.setVisible(false);
     }//GEN-LAST:event_paneHomeMouseClicked
 
     private void paneHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneHomeMousePressed
@@ -404,6 +436,13 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_paneAlugadosMousePressed
 
+    private void painelPrincipalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelPrincipalMousePressed
+        pane1.setBackground(panedefault);
+        pane2.setBackground(panedefault);
+        pane3.setBackground(panedefault);
+        pane4.setBackground(paneClick);
+    }//GEN-LAST:event_painelPrincipalMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -420,22 +459,19 @@ public class Principal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new Principal(null).setVisible(true);
             }
         });
     }

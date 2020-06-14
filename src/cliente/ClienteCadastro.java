@@ -568,7 +568,6 @@ public class ClienteCadastro extends javax.swing.JFrame {
             return false;
         }
     }
-    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Cliente cliente;
 

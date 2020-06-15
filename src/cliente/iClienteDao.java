@@ -10,7 +10,7 @@ public interface iClienteDao {
 
     public void addCliente(Cliente cliente);
 
-    public void deletarCliente(int id);
+    public boolean deletarCliente(int id);
 
     public void atualizarCliente(Cliente cliente);
     

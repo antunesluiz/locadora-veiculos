@@ -24,10 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -228,7 +225,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Lista Ve&#xed;culos"/>
+                    <Property name="text" type="java.lang.String" value="Lista de ve&#xed;culos"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="pane3">
@@ -307,7 +304,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ve&#xed;culos Alugados"/>
+                    <Property name="text" type="java.lang.String" value="Ve&#xed;culos reservados"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="pane4">

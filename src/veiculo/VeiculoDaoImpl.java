@@ -6,11 +6,11 @@
 package veiculo;
 
 import conexao.Conexao;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -203,7 +203,6 @@ public class VeiculoDaoImpl implements iVeiculoDao {
     }
 
     public boolean reservaVeiculo(int idVeiculo, int idCliente) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
 
         String sql = "INSERT INTO cliente_has_veiculo (id, cliente_id, veiculo_id, data_inicio, data_fim) "
@@ -215,10 +214,10 @@ public class VeiculoDaoImpl implements iVeiculoDao {
             preparedStatement.setNull(1, Types.INTEGER);
             preparedStatement.setInt(2, idCliente);
             preparedStatement.setInt(3, idVeiculo);
-            preparedStatement.setString(4, dateFormat.format(calendar.getTime()));
+            preparedStatement.setDate(4, new Date(calendar.getTimeInMillis()));
 
             calendar.add(Calendar.DAY_OF_YEAR, 7);
-            preparedStatement.setString(5, dateFormat.format(calendar.getTime()));
+            preparedStatement.setDate(5, new Date(calendar.getTimeInMillis()));
 
             preparedStatement.execute();
 
@@ -240,6 +239,8 @@ public class VeiculoDaoImpl implements iVeiculoDao {
             preparedStatement.setInt(2, id);
 
             preparedStatement.execute();
+
+            preparedStatement.close();
 
             return true;
         } catch (SQLException exception) {
@@ -289,8 +290,10 @@ public class VeiculoDaoImpl implements iVeiculoDao {
 
             while (resultSet.next()) {
                 clienteHasVeiculos.add(new ClienteHasVeiculo(resultSet.getInt("id"), resultSet.getInt("cliente_id"), resultSet.getInt("veiculo_id"),
-                        resultSet.getString("data_inicio"), resultSet.getString("data_fim")));
+                        resultSet.getDate("data_inicio"), resultSet.getDate("data_fim")));
             }
+
+            preparedStatement.close();
 
             return clienteHasVeiculos;
         } catch (SQLException exception) {
@@ -308,12 +311,56 @@ public class VeiculoDaoImpl implements iVeiculoDao {
 
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
-            
+
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Erro ao deletar relação veículo cliente");
+        }
+
+        return false;
+    }
+    
+        public boolean naoReservaVeiculoByVeiculoId(int id) {
+        String sql = "DELETE FROM cliente_has_veiculo WHERE veiculo_id = ?";
+
+        try {
+            preparedStatement = conexao.getConnection().prepareStatement(sql);
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+
             return true;
         } catch (SQLException e) {
             System.err.println("Erro ao deletar relação veículo cliente");
         }
-        
+
         return false;
+    }
+        
+    public String getStatusById(int id) {
+        String sql = "SELECT * FROM status_veiculo WHERE id = ?";
+
+        try {
+            preparedStatement = conexao.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                return resultSet.getString("nome");
+            }
+
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void fechaConexao() {
+        conexao.fechaConexao();
     }
 }

@@ -22,10 +22,10 @@ public class Principal extends javax.swing.JFrame {
 
     private final Cliente cliente;
 
-    private final ListarVeiculos listarVeiculos;
+    private ListarVeiculos listarVeiculos;
     private final Perfil perfil;
     private final Home home;
-    private final veiculo.VeiculoReservado veiculoReservado;
+    private veiculo.VeiculoReservado veiculoReservado;
 
     public Principal(Cliente cliente) {
         initComponents();
@@ -152,7 +152,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setText("Lista Veículos");
+        jLabel4.setText("Lista de veículos");
 
         javax.swing.GroupLayout pane3Layout = new javax.swing.GroupLayout(pane3);
         pane3.setLayout(pane3Layout);
@@ -204,7 +204,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("Veículos Alugados");
+        jLabel10.setText("Veículos reservados");
 
         javax.swing.GroupLayout pane4Layout = new javax.swing.GroupLayout(pane4);
         pane4.setLayout(pane4Layout);
@@ -354,9 +354,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,14 +370,26 @@ public class Principal extends javax.swing.JFrame {
         listarVeiculos.setVisible(false);
         perfil.setVisible(false);
         home.setVisible(false);
+        
+        painelPrincipal.remove(veiculoReservado);
+        
+        veiculoReservado = new VeiculoReservado(cliente);
+        painelPrincipal.add(veiculoReservado);
+        
         veiculoReservado.popularTabela();
         veiculoReservado.setVisible(true);
     }//GEN-LAST:event_paneAlugadosMouseClicked
 
     //Listar Veiculos
     private void paneListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneListaMouseClicked
+        painelPrincipal.remove(listarVeiculos);
+        
+        listarVeiculos = new ListarVeiculos(cliente);
+        painelPrincipal.add(listarVeiculos);
+        
         listarVeiculos.popularTabela();
-        listarVeiculos.setVisible(true);
+        listarVeiculos.setVisible(true); 
+        
         perfil.setVisible(false);
         home.setVisible(false);
         veiculoReservado.setVisible(false);

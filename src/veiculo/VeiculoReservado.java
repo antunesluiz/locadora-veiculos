@@ -8,7 +8,12 @@ package veiculo;
 import cliente.Cliente;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -48,28 +53,31 @@ public class VeiculoReservado extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Demi", 0, 48)); // NOI18N
         jLabel1.setText("Veículos Reservados");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nome", "Data início", "Data fim", "Preço"
+                "id", "Nome", "Data início", "Data fim", "Preço", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -89,18 +97,30 @@ public class VeiculoReservado extends javax.swing.JInternalFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Vá até uma de nossas unidades para alugar os veículos reservados.");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("<html>Basta apresentar o id dos veículos à um de nossos atendentes <br> antes do prazo estimado acabar!</html>");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(240, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +129,11 @@ public class VeiculoReservado extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,6 +142,8 @@ public class VeiculoReservado extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
@@ -128,47 +154,67 @@ public class VeiculoReservado extends javax.swing.JInternalFrame {
         VeiculoDaoImpl veiculoDaoImpl = new VeiculoDaoImpl();
         ArrayList<ClienteHasVeiculo> clienteVeiculo = veiculoDaoImpl.getVeiculosAlugadosByCliente(cliente.getId());
 
-        String[] colunas = {"id", "Nome", "Data Início", "Data Fim", "Preço"};
+        String[] colunas = {"id", "Nome", "Data Início", "Data Fim", "Preço", "Status"};
 
         defaultTableModel = new DefaultTableModel(colunas, 0);
         jTable1.setModel(defaultTableModel);
+
+        ((DefaultTableModel) jTable1.getModel()).setRowCount(0);
 
         if (clienteVeiculo != null && clienteVeiculo.size() > 0) {
             clienteVeiculo.stream().map((clienteHasVeiculo) -> {
                 double preco = veiculoDaoImpl.getCategoriaPeloId(veiculoDaoImpl.getVeiculoById(clienteHasVeiculo.getVeiculoId()).getCategoriaVeiculo()).getPreco();
                 String modelo = veiculoDaoImpl.getVeiculoById(clienteHasVeiculo.getVeiculoId()).getModelo();
+                String status = veiculoDaoImpl.getStatusById(veiculoDaoImpl.getVeiculoById(clienteHasVeiculo.getVeiculoId()).getStatusVeiculo());
+                Object[] objects = new Object[6];
 
-                Object[] objects = new Object[5];
+                Calendar calendar = Calendar.getInstance();
 
-                if (preco != 0) {
-                    if (!modelo.equals("")) {
-                        objects[0] = clienteHasVeiculo.getId();
-                        objects[1] = modelo;
-                        objects[2] = clienteHasVeiculo.getDataInicio();
-                        objects[3] = clienteHasVeiculo.getDataFim();
-                        objects[4] = preco;
+                if (clienteHasVeiculo.getDataFim().compareTo(new Date(calendar.getTimeInMillis())) > 0) {
+                    if (preco != 0) {
+                        if (!modelo.equals("")) {
+                            objects[0] = clienteHasVeiculo.getId();
+                            objects[1] = modelo;
+                            objects[2] = clienteHasVeiculo.getDataInicio();
+                            objects[3] = clienteHasVeiculo.getDataFim();
+                            objects[4] = preco;
+                            objects[5] = status;
+                        } else {
+                            objects[0] = clienteHasVeiculo.getId();
+                            objects[2] = clienteHasVeiculo.getDataInicio();
+                            objects[3] = clienteHasVeiculo.getDataFim();
+                            objects[4] = preco;
+                            objects[5] = status;
+                        }
                     } else {
-                        objects[0] = clienteHasVeiculo.getId();
-                        objects[2] = clienteHasVeiculo.getDataInicio();
-                        objects[3] = clienteHasVeiculo.getDataFim();
-                        objects[4] = preco;
+                        if (!modelo.equals("")) {
+                            objects[0] = clienteHasVeiculo.getId();
+                            objects[2] = clienteHasVeiculo.getDataInicio();
+                            objects[3] = clienteHasVeiculo.getDataFim();
+                            objects[5] = status;
+                        } else {
+                            objects[0] = clienteHasVeiculo.getId();
+                            objects[1] = modelo;
+                            objects[2] = clienteHasVeiculo.getDataInicio();
+                            objects[3] = clienteHasVeiculo.getDataFim();
+                            objects[5] = status;
+                        }
                     }
                 } else {
-                    if (!modelo.equals("")) {
-                        objects[0] = clienteHasVeiculo.getId();
-                        objects[2] = clienteHasVeiculo.getDataInicio();
-                        objects[3] = clienteHasVeiculo.getDataFim();
-                    } else {
-                        objects[0] = clienteHasVeiculo.getId();
-                        objects[1] = modelo;
-                        objects[2] = clienteHasVeiculo.getDataInicio();
-                        objects[3] = clienteHasVeiculo.getDataFim();
+                    objects = null;
+
+                    if (veiculoDaoImpl.naoReservaVeiculoByVeiculoId(clienteHasVeiculo.getVeiculoId())) {
+                        if (veiculoDaoImpl.updateStatusVeiculo(clienteHasVeiculo.getVeiculoId(), 1)) {
+                            JOptionPane.showMessageDialog(null, "Veículo Não Reservado com Sucesso");
+                        }
                     }
                 }
 
                 return objects;
             }).forEachOrdered((objects) -> {
-                defaultTableModel.addRow(objects);
+                if (objects != null) {
+                    defaultTableModel.addRow(objects);
+                }
             });
         }
 
@@ -187,14 +233,11 @@ public class VeiculoReservado extends javax.swing.JInternalFrame {
                     } else {
                         if (data != null) {
                             if (veiculoDaoImpl.naoReservaVeiculo((int) data)) {
-                                clienteVeiculo.stream().filter((hasVeiculo) -> (hasVeiculo.getId() == (int) data)).forEachOrdered((hasVeiculo) -> {
-                                    if (veiculoDaoImpl.updateStatusVeiculo(hasVeiculo.getVeiculoId(), 1)) {
-                                        JOptionPane.showMessageDialog(null, "Veículo não reservado com sucesso");
+                                clienteVeiculo.stream().filter((chv) -> (chv.getId() == (int) data)).forEachOrdered((chv) -> {
+                                    if (veiculoDaoImpl.updateStatusVeiculo(veiculoDaoImpl.getVeiculoById(chv.getVeiculoId()).getId(), 1)) {
+                                        JOptionPane.showMessageDialog(null, "Veículo Não Reservado com Sucesso");
 
-                                        ((DefaultTableModel) jTable1.getModel()).setRowCount(0);
                                         popularTabela();
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Não foi possível não reservar veículo");
                                     }
                                 });
                             } else {

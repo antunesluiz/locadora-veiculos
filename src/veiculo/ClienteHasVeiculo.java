@@ -5,6 +5,8 @@
  */
 package veiculo;
 
+import java.sql.Date;
+
 /**
  *
  * @author Luiz Antunes
@@ -13,10 +15,10 @@ class ClienteHasVeiculo {
     private int id;
     private int clienteId;
     private int veiculoId;
-    private String dataInicio;
-    private String dataFim;
+    private Date dataInicio;
+    private Date dataFim;
 
-    public ClienteHasVeiculo(int id, int clienteId, int veiculoId, String dataInicio, String dataFim) {
+    public ClienteHasVeiculo(int id, int clienteId, int veiculoId, Date dataInicio, Date dataFim) {
         this.id = id;
         this.clienteId = clienteId;
         this.veiculoId = veiculoId;
@@ -48,19 +50,19 @@ class ClienteHasVeiculo {
         this.veiculoId = veiculoId;
     }
 
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 }

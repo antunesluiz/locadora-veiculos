@@ -32,6 +32,7 @@ public class ListarVeiculos extends javax.swing.JInternalFrame {
      *
      * @param cliente
      */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public ListarVeiculos(Cliente cliente) {
 
         if (cliente != null) {
@@ -132,7 +133,7 @@ public class ListarVeiculos extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -265,9 +266,12 @@ public class ListarVeiculos extends javax.swing.JInternalFrame {
         ArrayList<Veiculo> veiculos = veiculoDaoImpl.getVeiculosDisponiveis();
 
         String colunas[] = {"id", "Marca", "Cor", "Modelo", "Ano", "Categoria", "Combustível", "Preço", "Carroceria"};
-        defaultTableModel = new DefaultTableModel(colunas, 0);
 
+        defaultTableModel = new DefaultTableModel(colunas, 0);
         jTable1.setModel(defaultTableModel);
+
+        ((DefaultTableModel) jTable1.getModel()).setRowCount(0);
+
         if (veiculos != null && veiculos.size() > 0) {
             veiculos.stream().map((veiculo) -> {
                 CombustivelVeiculo combustivelVeiculo = veiculoDaoImpl.getCombustivelPeloId(veiculo.getCombustivelVeiculo());
@@ -375,12 +379,16 @@ public class ListarVeiculos extends javax.swing.JInternalFrame {
                     } else {
                         if (data != null) {
                             if (veiculoDaoImpl.reservaVeiculo((int) data, cliente.getId())) {
-                                if (veiculoDaoImpl.updateStatusVeiculo((int) data, 2)) {
+                                if (veiculoDaoImpl.updateStatusVeiculo((int) data, 4)) {
                                     JOptionPane.showMessageDialog(null, "Veículo Reservado com sucesso");
+                                    popularTabela();
                                 } else {
+                                    System.out.println("update status");
                                     JOptionPane.showMessageDialog(null, "Não foi possível reservar veículo");
                                 }
                             } else {
+                                System.out.println("reserva veiculos");
+
                                 JOptionPane.showMessageDialog(null, "Não foi possível reservar veículo");
                             }
                         }
@@ -388,6 +396,8 @@ public class ListarVeiculos extends javax.swing.JInternalFrame {
                 }
             }
         });
+
+        //veiculoDaoImpl.fechaConexao();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

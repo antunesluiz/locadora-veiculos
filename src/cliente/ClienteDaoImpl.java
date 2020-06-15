@@ -99,7 +99,7 @@ public class ClienteDaoImpl implements iClienteDao {
     }
 
     @Override
-    public void deletarCliente(int id) {
+    public boolean deletarCliente(int id) {
         String sql = "DELETE FROM cliente WHERE id = ?";
 
         try {
@@ -109,10 +109,12 @@ public class ClienteDaoImpl implements iClienteDao {
 
             preparedStatement.execute();
 
-            preparedStatement.close();
+            return true;
         } catch (SQLException e) {
             System.err.println("Erro ao deletar cliente");
         }
+
+        return false;
     }
 
     @Override
@@ -193,11 +195,15 @@ public class ClienteDaoImpl implements iClienteDao {
             ResultSet resultSet = preparedStatement.getResultSet();
 
             if (resultSet.next()) {
-                return new Cliente(resultSet.getInt("id"), resultSet.getInt("status_cliente_id"),
+
+                Cliente c = new Cliente(resultSet.getInt("id"), resultSet.getInt("status_cliente_id"),
                         resultSet.getString("nome"), resultSet.getString("cpf"), resultSet.getString("rg"), resultSet.getString("sexo"),
                         resultSet.getString("telefone"), resultSet.getString("logradouro"), resultSet.getString("cep"), resultSet.getInt("numero"),
                         resultSet.getString("bairro"), resultSet.getString("cidade"), resultSet.getString("estado"), resultSet.getString("pais"),
                         resultSet.getString("cnh"), resultSet.getString("email"), resultSet.getString("senha"), resultSet.getInt("is_admin"));
+
+                preparedStatement.close();
+                return c;
             }
 
             preparedStatement.close();

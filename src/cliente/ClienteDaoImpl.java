@@ -60,12 +60,14 @@ public class ClienteDaoImpl implements iClienteDao {
     }
 
     @Override
-    public void addCliente(Cliente cliente) {
+    public long addCliente(Cliente cliente) {
         String sql = "INSERT INTO cliente (id, status_cliente_id, nome, cpf, rg, sexo, telefone, logradouro, cep, numero, bairro, cidade, estado, pais, cnh, email, senha, is_admin)"
                 + "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        String generatedColumns[] = { "id" };
 
         try {
-            preparedStatement = conexao.getConnection().prepareStatement(sql);
+            preparedStatement = conexao.getConnection().prepareStatement(sql, generatedColumns);
 
             preparedStatement.setNull(1, Types.INTEGER);
             preparedStatement.setInt(2, cliente.getStatusClientId());
@@ -87,11 +89,19 @@ public class ClienteDaoImpl implements iClienteDao {
             preparedStatement.setInt(18, cliente.getIsAdmin());
 
             preparedStatement.execute();
+            
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            
+            if (resultSet.next()) {
+                return resultSet.getLong(1);
+            }
 
             preparedStatement.close();
         } catch (SQLException e) {
-            System.err.println("Erro ao adicionar cliente!");
+          e.printStackTrace();
         }
+        
+        return 0;
     }
 
     public void close() {

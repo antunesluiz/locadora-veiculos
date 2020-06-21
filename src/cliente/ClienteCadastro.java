@@ -7,8 +7,6 @@ package cliente;
 
 import Main.Principal;
 import br.com.caelum.stella.validation.CPFValidator;
-import java.util.Arrays;
-import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 /**
@@ -137,7 +135,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
         }
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
-        jLabel14.setText("Email");
+        jLabel14.setText("Email ou login");
 
         txtEmail.setBackground(new java.awt.Color(166, 221, 221));
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +212,6 @@ public class ClienteCadastro extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,8 +270,9 @@ public class ClienteCadastro extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel10)
-                                .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -495,7 +493,7 @@ public class ClienteCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPaisActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cliente cliente = new Cliente(1, 1, "Jose", "12345678910", "12345", "N/A", "31940028922", "Rua seila", "000000", 30, "teste", "teste", "teste", "teste", "teste", "teste", "123456", 1);
+        Cliente cliente = new Cliente(1, 1, "Jose", "12345678910", "12345", "N/A", "31940028922", "Rua seila", "3223251", 30, "teste", "teste", "teste", "teste", "teste", "teste", "123456", 1);
         String ConfirmaSenha;
         cliente.setNome(txtNome.getText());
         cliente.setCpf(txtCPF.getText());
@@ -503,16 +501,21 @@ public class ClienteCadastro extends javax.swing.JFrame {
         cliente.setCnh(txtCNH.getText());
         cliente.setEstado(txtEstado.getText());
         cliente.setBairro(txtBairro.getText());
-        // cliente.setNumero(txtNumero.getText(0, 100)); conversão de string para int necessário
         cliente.setPais(txtPais.getText());
         cliente.setCidade(txtCidade.getText());
         cliente.setLogradouro(txtLogradouro.getText());
-        //cliente.setCelular(txtCelular.getText());       nao tem na lista de atributos
-        cliente.setEmail(jEmail.getText()); // Código é necessário?
+        cliente.setEmail(jEmail.getText());
         cliente.setEmail(txtEmail.getText());
-        cliente.setSenha(txtSenha.getText());        //string para inteiro
+        cliente.setSenha(txtSenha.getText());
+
+        try {
+            cliente.setNumero(Integer.parseInt(txtNumero.getText()));
+        } catch (NumberFormatException exception) {
+            exception.printStackTrace();
+            cliente.setNumero(0);
+        }
+
         ConfirmaSenha = txtConfirmaSenha.getText();
-        //falta cep 
 
         ClienteDaoImpl dao = new ClienteDaoImpl();
         if (cliente.getNome() != null && !cliente.getNome().equals("")
@@ -526,10 +529,16 @@ public class ClienteCadastro extends javax.swing.JFrame {
                 && cliente.getEmail() != null && !cliente.getEmail().equals("")
                 && cliente.getSenha() != null && !cliente.getSenha().equals("")
                 && cliente.getSenha().equals(ConfirmaSenha)
+                && cliente.getNumero() != 0
                 && cliente.getBairro() != null && !cliente.getBairro().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-            dao.addCliente(cliente);
+
+            try {
+                cliente.setId(Integer.valueOf(Long.toString(dao.addCliente(cliente))));
+            } catch (NumberFormatException e) {
+                System.out.println("Capacidade do Integer estourou.");
+            }
 
             dao.close();
             new Principal(cliente).setVisible(true);
@@ -567,6 +576,10 @@ public class ClienteCadastro extends javax.swing.JFrame {
                                                 } else {
                                                     if (cliente.getEmail().equals("")) {
                                                         JOptionPane.showMessageDialog(null, "Preencha o Campo E-mail!");
+                                                    } else {
+                                                        if (cliente.getNumero() == 0) {
+                                                            JOptionPane.showMessageDialog(null, "Preencha o Campo Número!");
+                                                        }
                                                     }
                                                 }
                                             }

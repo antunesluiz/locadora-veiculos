@@ -1088,7 +1088,7 @@ public class Perfil extends javax.swing.JInternalFrame {
                 }
             } else {
                 dao.close();
-                JOptionPane.showMessageDialog(null, "Não foi possível excluir perigolafojsd-gj");
+                JOptionPane.showMessageDialog(null, "Não foi possível excluir perfil. Verifique se não há veículos alugados");
             }
         }
     }//GEN-LAST:event_excluirButtonActionPerformed
@@ -1124,7 +1124,7 @@ public class Perfil extends javax.swing.JInternalFrame {
                     && cliente.getBairro() != null && !cliente.getBairro().equals("")) {
 
                 JOptionPane.showMessageDialog(null, "Cliente Editado com Sucesso");
-                dao.addCliente(cliente);
+                dao.atualizarCliente(cliente);
                 dao.close();
 
             } else {

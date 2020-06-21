@@ -8,7 +8,7 @@ public interface iClienteDao {
 
     public Cliente getClientById(int id);
 
-    public void addCliente(Cliente cliente);
+    public long addCliente(Cliente cliente);
 
     public boolean deletarCliente(int id);
 
